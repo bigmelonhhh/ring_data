@@ -52,8 +52,8 @@ async function handleSubmit(): Promise<void> {
 </script>
 
 <template>
-  <div class="page-shell neu-bg !px-4 !pb-6 !pt-12 min-h-screen">
-    <section class="neu-card rounded-4xl px-6 py-8">
+  <div class="login-page min-h-screen bg-gradient-to-r from-[#e1f2fc] to-[#daf0fd] px-4 pb-6 pt-12">
+    <section class="login-panel rounded-3xl px-6 py-8">
       <div class="flex flex-col items-center gap-4 mb-8">
         <div class=" p-4 ">
           <img class="h-10 w-26" :src="logoMark" alt="logo" />
@@ -106,30 +106,26 @@ async function handleSubmit(): Promise<void> {
 </template>
 
 <style scoped>
-.neu-bg {
+.login-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(to right, #e1f2fc,#daf0fd);
 }
 
-.neu-card {
-  background: #f0fdfa;
-}
-
-.neu-icon-wrapper {
-  background: #f0fdfa;
-  box-shadow: 8px 8px 16px #c9d8d5, -8px -8px 16px #ffffff;
+.login-panel {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(10px);
 }
 
 .neu-input {
-  background: #f0fdfa;
-  box-shadow: inset 6px 6px 12px #c9d8d5, inset -6px -6px 12px #ffffff;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: inset 0 0 0 1px rgba(22, 119, 255, 0.08);
 }
 
 .neu-btn {
-  background: #0891b2;
-  box-shadow: 6px 6px 12px #c9d8d5, -6px -6px 12px #ffffff;
+  background: #1677ff;
+  box-shadow: 0 10px 20px rgba(22, 119, 255, 0.2);
   color: white;
   transition: all 0.2s ease-in-out;
   border: none;
@@ -137,7 +133,8 @@ async function handleSubmit(): Promise<void> {
 }
 
 .neu-btn:active {
-  box-shadow: inset 4px 4px 8px #06748e, inset -4px -4px 8px #0aaee6;
+  background: #0f5fd6;
+  box-shadow: inset 0 4px 10px rgba(15, 95, 214, 0.24);
 }
 
 /* 穿透修改 vant 样式 */
@@ -149,17 +146,17 @@ async function handleSubmit(): Promise<void> {
   display: none;
 }
 :deep(.van-field__control) {
-  color: #134e4a;
+  color: #1d2129;
   font-weight: 500;
 }
 :deep(.van-field__control::placeholder) {
-  color: #99f6e4;
+  color: #86909c;
 }
 :deep(.van-field__label) {
-  color: #0f766e;
+  color: #1d2129;
   font-weight: 600;
 }
 :deep(.van-field__right-icon) {
-  color: #0d9488;
+  color: #1677ff;
 }
 </style>
