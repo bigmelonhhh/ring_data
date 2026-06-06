@@ -52,14 +52,18 @@ function handleAction(_routePath: string): void {
 }
 
 .quick-card {
-  border: 1px solid rgba(255, 255, 255, 0.58);
-  background: rgba(247, 252, 250, 0.88);
-  box-shadow: 0 12px 28px rgba(16, 42, 49, 0.06);
-  transition: all 0.15s ease-in-out;
+  border: 1px solid rgba(227, 239, 234, 0.96);
+  background: rgba(231, 243, 238, 0.96);
+  box-shadow: 0 2px 8px rgba(16, 42, 49, 0.03);
+  transition:
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out,
+    transform 0.15s ease-in-out;
 }
 
 .quick-card:active {
-  background: rgba(237, 248, 244, 0.98);
+  background: rgba(221, 237, 230, 0.98);
   transform: translateY(1px);
 }
 

@@ -50,7 +50,9 @@ function handleMenuClick(): void {
   backdrop-filter: blur(16px);
 }
 
-.brand-pill,
+.brand-pill{
+   min-height: 36px;
+}
 .right-tools,
 .mode-switch {
   min-height: 36px;
@@ -64,7 +66,7 @@ function handleMenuClick(): void {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 10px 4px 6px;
+  padding: 4px 0px 4px 0px;
 }
 
 .icon-dot {
