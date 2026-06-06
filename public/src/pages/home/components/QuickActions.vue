@@ -24,16 +24,19 @@ function handleAction(_routePath: string): void {
 </script>
 
 <template>
-  <div class="px-2 pb-2 pt-2">
+  <div class="px-4 pb-2 pt-2">
     <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
       <div
         v-for="action in actions"
         :key="action.id"
-        class="neu-btn min-w-[160px] flex-shrink-0 cursor-pointer rounded-[16px] px-[14px] py-[8px] "
+        class="quick-card min-w-[148px] flex-shrink-0 cursor-pointer rounded-[20px] px-[14px] py-[11px]"
         @click="handleAction(action.route)"
       >
-        <div class="text-base font-semibold text-[#1D2129]">{{ action.title }}</div>
-        <div class=" text-sm text-[#86909C] whitespace-nowrap">{{ action.desc }}</div>
+        <div class="flex items-center gap-2">
+          <span class="quick-dot"></span>
+          <div class="text-[15px] font-bold text-[#102A31]">{{ action.title }}</div>
+        </div>
+        <div class="mt-1 text-[12px] font-medium text-[#6B7B86] whitespace-nowrap">{{ action.desc }}</div>
       </div>
     </div>
   </div>
@@ -48,20 +51,30 @@ function handleAction(_routePath: string): void {
   scrollbar-width: none;
 }
 
-.neu-btn {
-  background: #ffffff; /* PRD 要求按钮背景色默认 #FFFFFF */
+.quick-card {
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  background: rgba(247, 252, 250, 0.88);
+  box-shadow: 0 12px 28px rgba(16, 42, 49, 0.06);
   transition: all 0.15s ease-in-out;
 }
 
-.neu-btn:active {
-  background: #f5f7fa; /* PRD 点击态 */
-  opacity: 0.8;
+.quick-card:active {
+  background: rgba(237, 248, 244, 0.98);
+  transform: translateY(1px);
+}
+
+.quick-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #00a68e;
+  box-shadow: 0 0 0 4px rgba(0, 166, 142, 0.1);
 }
 
 /* 全局可注入的 toast 样式 */
 :global(.custom-toast-fail) {
-  background-color: #F0F9FF !important;
-  color: #FF7D00 !important;
+  background-color: #f2fffb !important;
+  color: #e77446 !important;
   font-size: 14px !important;
 }
 </style>

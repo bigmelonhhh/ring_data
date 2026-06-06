@@ -20,7 +20,7 @@ async function openDialog(options: IConfirmDialogOptions): Promise<boolean> {
       className: options.className || 'app-confirm-dialog',
       theme: 'round-button',
       cancelButtonColor: '#EEF2F6',
-      confirmButtonColor: options.confirmButtonColor || '#1677FF',
+      confirmButtonColor: options.confirmButtonColor || '#00A68E',
       teleport: 'body',
     })
     return true

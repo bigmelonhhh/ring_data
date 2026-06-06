@@ -156,12 +156,13 @@ defineExpose({
   <van-popup
     v-model:show="showDrawer"
     position="left"
+    teleport="body"
+    :z-index="5000"
     :style="{ width: '80%', height: '100%' }"
     class="home-drawer-popup flex flex-col"
-    style="background: linear-gradient(to right, #e1f2fc,#daf0fd);"
   >
     <!-- 1. 用户信息头部区域 -->
-    <div class="px-2 py-6 flex items-center justify-between">
+    <div class="drawer-header px-4 py-6 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <!-- 头像 -->
         <van-image
@@ -172,8 +173,8 @@ defineExpose({
         />
         <!-- 用户名和健康档案 -->
         <div class="flex flex-col">
-          <span class="text-lg font-bold text-[#1D2129]">主*</span>
-          <span class="text-xs text-[#86909C] mt-1 cursor-pointer flex items-center gap-1" @click="toHealthRecord">
+          <span class="text-lg font-bold text-[#102A31]">主*</span>
+          <span class="text-xs text-[#5E707E] mt-1 cursor-pointer flex items-center gap-1" @click="toHealthRecord">
             健康档案 <van-icon name="arrow" />
           </span>
         </div>
@@ -181,26 +182,26 @@ defineExpose({
       <!-- 右侧设置与关闭按钮 -->
       <div class="flex items-center gap-4">
         <!-- 设置图标 -->
-        <van-icon name="setting-o" size="20" color="#1D2129" @click="toSetting" />
+        <van-icon name="setting-o" size="20" color="#102A31" @click="toSetting" />
         <!-- 关闭图标（代码方法控制关闭） -->
-        <van-icon name="cross" size="20" color="#1D2129" @click="closeDrawer" />
+        <van-icon name="cross" size="20" color="#102A31" @click="closeDrawer" />
       </div>
     </div>
 
     <!-- 2. 菜单功能列表 -->
-    <div class="flex-1 overflow-y-auto px-2 pb-4 flex flex-col gap-4">
+    <div class="flex-1 overflow-y-auto px-4 pb-4 flex flex-col gap-4">
       <!-- 新建对话大按钮 -->
       <div 
-        class="bg-white rounded-2xl p-2 flex items-center justify-center gap-2 cursor-pointer shadow-sm active:opacity-80 transition-opacity"
+        class="drawer-new-chat rounded-[20px] p-3 flex items-center justify-center gap-2 cursor-pointer active:opacity-80 transition-opacity"
         @click="toNewChat"
       >
-        <van-icon name="chat-o" size="20" color="#1D2129" />
-        <span class="text-base font-bold text-[#1D2129]">新建对话</span>
+        <van-icon name="chat-o" size="20" color="#00A68E" />
+        <span class="text-base font-bold text-[#102A31]">新建对话</span>
       </div>
 
       <!-- 全部历史对话 -->
-      <div class="bg-white rounded-2xl p-4 shadow-sm flex-1 flex flex-col min-h-[300px]">
-        <div class="text-base font-bold text-[#1D2129] mb-4">全部历史对话</div>
+      <div class="drawer-list rounded-[24px] p-4 flex-1 flex flex-col min-h-[300px]">
+        <div class="text-base font-bold text-[#102A31] mb-4">全部历史对话</div>
         <div v-if="sessionList.length" class="flex flex-col gap-3">
           <van-swipe-cell
             v-for="session in sessionList"
@@ -214,27 +215,27 @@ defineExpose({
               class="rounded-2xl border px-3 py-3 transition-colors"
               :class="
                 activeSessionId === session.id
-                  ? 'border-[#1677FF] bg-[#EAF3FF]'
-                  : 'border-transparent bg-[#f2f2f2]'
+                  ? 'border-[#00A68E] bg-[#E6FAF4]'
+                  : 'border-transparent bg-[#F3F8F6]'
               "
               @click="handleSessionClick(session.id)"
             >
               <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0 flex-1">
                   <div class="flex items-center gap-2">
-                    <div class="truncate text-sm font-semibold text-[#1D2129]">{{ session.title }}</div>
+                    <div class="truncate text-sm font-semibold text-[#102A31]">{{ session.title }}</div>
                     <span
                       v-if="session.isPinned"
-                      class="shrink-0 rounded-full bg-[#E8F3FF] px-2 py-[2px] text-[10px] font-semibold text-[#1677FF]"
+                      class="shrink-0 rounded-full bg-[#DFF8F1] px-2 py-[2px] text-[10px] font-semibold text-[#008979]"
                     >
                       置顶
                     </span>
                   </div>
-                  <div class="truncate mt-2 text-xs leading-[12px] text-[#86909C]">
+                  <div class="truncate mt-2 text-xs leading-[12px] text-[#6B7B86]">
                     {{ session.preview }}
                   </div>
                 </div>
-                <div class="shrink-0 text-[12px] text-[#86909C]">
+                <div class="shrink-0 text-[12px] text-[#6B7B86]">
                   {{ formatSessionTime(session.updatedAt) }}
                 </div>
               </div>
@@ -259,7 +260,7 @@ defineExpose({
             </template>
           </van-swipe-cell>
         </div>
-        <div v-else class="flex-1 flex items-center justify-center text-sm text-[#86909C]">
+        <div v-else class="flex-1 flex items-center justify-center text-sm text-[#6B7B86]">
           暂无历史对话
         </div>
       </div>
@@ -274,12 +275,26 @@ defineExpose({
 <style scoped>
 /* 仅覆盖首页抽屉自己的 popup，避免影响 Toast / Dialog 等其他 Vant 弹层 */
 .home-drawer-popup {
-  background-color: transparent !important;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(104, 225, 205, 0.28), transparent 30%),
+    linear-gradient(180deg, #f8fffc 0%, #eef8f5 100%) !important;
+}
+
+.drawer-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.58);
+}
+
+.drawer-new-chat,
+.drawer-list {
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 14px 32px rgba(16, 42, 49, 0.08);
+  backdrop-filter: blur(12px);
 }
 
 /* 针对 van-cell 移除部分不需要的边框，使其更符合拟物圆角卡片风格 */
 :deep(.van-cell::after) {
-  border-bottom-color: #f0f0f0;
+  border-bottom-color: #e5f0ed;
 }
 :deep(.van-cell:last-child::after) {
   display: none;
@@ -306,11 +321,11 @@ defineExpose({
 }
 
 .swipe-action-pin {
-  background: #1677ff;
+  background: #00a68e;
 }
 
 .swipe-action-pin:active {
-  background: #0f5fd6;
+  background: #008979;
 }
 
 .swipe-action-delete {

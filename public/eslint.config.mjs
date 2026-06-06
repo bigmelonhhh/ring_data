@@ -7,6 +7,7 @@ import vueParser from 'vue-eslint-parser'
 export default tseslint.config(
   {
     ignores: [
+      '.trae/**',
       'dist/**',
       'node_modules/**',
       'postcss.config.cjs',

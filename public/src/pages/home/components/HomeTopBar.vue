@@ -14,23 +14,25 @@ function handleMenuClick(): void {
 </script>
 
 <template>
-  <header class="flex items-center justify-between sticky top-0 z-50 neu-bg px-4 py-3">
+  <header class="home-top-bar sticky top-0 z-50 px-4 pb-3 pt-3">
     <!-- 左侧菜单，入口 -->
-    <div class="flex  cursor-pointer items-center gap-2 justify-center rounded-full" @click="handleMenuClick">
-      <van-icon name="wap-nav" size="20" color="#000000" />
-      <span class="text-base font-normal text-[#000000]">智医康</span>
+    <div class="brand-pill cursor-pointer" @click="handleMenuClick">
+      <span class="icon-dot">
+        <van-icon name="wap-nav" size="18" color="#00A68E" />
+      </span>
+      <span class="text-[16px] font-bold text-[#102A31]">智医康</span>
     </div>
 
     <!-- 标题区 -->
-    <div class="flex items-center gap-4">
-      <span class="text-lg font-bold text-[#000000]">对话</span>
-      <span class="text-base font-semibold text-[#666]">硬件</span>
+    <div class="mode-switch">
+      <span class="mode-active">对话</span>
+      <span>硬件</span>
     </div>
 
     <!-- 右侧占位 -->
-    <div class="h-8 bg-white rounded-l-full rounded-r-full flex items-center justify-center w-[80px] gap-3">
-      <van-icon name="weapp-nav" size="20" color="#000000" />
-      <van-icon name="clear" size="20" color="#000000" />
+    <div class="right-tools">
+      <van-icon name="weapp-nav" size="18" color="#102A31" />
+      <van-icon name="clear" size="18" color="#102A31" />
     </div>
 
     <!-- 侧边栏抽屉组件 -->
@@ -39,14 +41,77 @@ function handleMenuClick(): void {
 </template>
 
 <style scoped>
-.neu-bg {
+.home-top-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  background: rgba(247, 252, 250, 0.84);
+  backdrop-filter: blur(16px);
 }
-.neu-icon-btn {
-  background: #ffffff;
-  box-shadow: 6px 6px 12px #c9d8d5, -6px -6px 12px #ffffff;
-  transition: all 0.2s ease;
+
+.brand-pill,
+.right-tools,
+.mode-switch {
+  min-height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 10px 24px rgba(16, 42, 49, 0.06);
 }
-.neu-icon-btn:active {
-  box-shadow: inset 4px 4px 8px #c9d8d5, inset -4px -4px 8px #ffffff;
+
+.brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 6px;
+}
+
+.icon-dot {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(0, 166, 142, 0.12);
+}
+
+.mode-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  gap: 4px;
+  padding: 3px;
+  color: #6b7b86;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mode-switch span {
+  display: inline-flex;
+  min-width: 58px;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 6px 8px;
+}
+
+.mode-active {
+  background: #102a31;
+  color: #ffffff;
+}
+
+.right-tools {
+  display: flex;
+  width: 74px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.brand-pill:active,
+.right-tools:active {
+  transform: translateY(1px);
 }
 </style>

@@ -1,13 +1,15 @@
 :root {
-  --brand-primary: 18 184 134;
-  --brand-soft: 236 253 245;
-  --brand-dark: 15 23 42;
-  --brand-accent: 56 189 248;
-  --text-primary: 15 23 42;
-  --text-secondary: 100 116 139;
-  --surface-primary: 248 250 252;
+  --brand-primary: 0 166 142;
+  --brand-soft: 226 250 244;
+  --brand-dark: 9 46 55;
+  --brand-accent: 255 154 108;
+  --brand-info: 46 132 255;
+  --text-primary: 18 34 46;
+  --text-secondary: 94 112 126;
+  --surface-primary: 242 249 247;
   --surface-card: 255 255 255;
-  --border-soft: 226 232 240;
+  --surface-tint: 232 247 244;
+  --border-soft: 210 229 226;
 }
 
 html.dark {

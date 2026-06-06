@@ -77,7 +77,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex h-screen flex-col bg-gradient-to-r from-[#e1f2fc] to-[#daf0fd]">
+  <div class="home-page flex h-screen flex-col">
     <div class="shrink-0">
       <HomeTopBar />
     </div>
@@ -90,7 +90,7 @@ onUnmounted(() => {
       </div>
     </main>
 
-    <footer class="fixed-footer flex-shrink-0 bg-gradient-to-r from-[#def1ff] to-[#dcebfe]">
+    <footer class="fixed-footer flex-shrink-0">
       <QuickActions />
       <ChatInput @send="handleSend" />
       <ComplianceFooter />
@@ -99,6 +99,13 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.home-page {
+  background:
+    radial-gradient(circle at 12% 4%, rgba(111, 226, 207, 0.22), transparent 30%),
+    radial-gradient(circle at 86% 18%, rgba(255, 196, 142, 0.18), transparent 25%),
+    linear-gradient(180deg, #f7fffc 0%, #edf8f4 52%, #f8fbff 100%);
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -109,6 +116,8 @@ onUnmounted(() => {
 
 .fixed-footer {
   padding-bottom: calc(env(safe-area-inset-bottom) + 6px);
-  box-shadow: 0 -8px 20px rgba(15, 23, 42, 0.06);
+  background: rgba(247, 252, 250, 0.9);
+  box-shadow: 0 -12px 34px rgba(18, 34, 46, 0.08);
+  backdrop-filter: blur(16px);
 }
 </style>

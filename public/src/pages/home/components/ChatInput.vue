@@ -53,13 +53,13 @@ function handleSend(): void {
 </script>
 
 <template>
-  <div class="px-2  ">
+  <div class="px-4">
     <!-- 超出字数提示 -->
-    <div v-if="isOverLimit" class="mb-2 text-[14px] text-[#FF7D00] text-center">
+    <div v-if="isOverLimit" class="mb-2 text-center text-[14px] text-[#E77446]">
       输入内容不能超过500字
     </div>
-    
-    <div class="neu-input-box flex items-center rounded-[24px] px-4 py-[10px] bg-[#ffffff] min-h-[48px]">
+
+    <div class="chat-input-box flex items-center rounded-[24px] px-4 py-[10px] min-h-[50px]">
       <van-field
         v-model="inputText"
         class="!p-0 !bg-transparent flex-1"
@@ -70,8 +70,8 @@ function handleSend(): void {
         @update:model-value="handleInput"
       />
       <div
-        class="ml-3 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
-        :class="inputText.trim().length ? 'bg-[#1677FF] text-white cursor-pointer' : 'bg-[#D9DEE8] text-[#9AA4B2] cursor-not-allowed'"
+        class="ml-3 flex h-9 w-9 items-center justify-center rounded-full transition-colors"
+        :class="inputText.trim().length ? 'send-active text-white cursor-pointer' : 'bg-[#DDE8E5] text-[#94A3A0] cursor-not-allowed'"
         @click="handleSend"
       >
         <van-icon name="guide-o" size="16" />
@@ -81,13 +81,20 @@ function handleSend(): void {
 </template>
 
 <style scoped>
-.neu-input-box {
-  border: 1px solid #E5E6EB; /* 默认边框 */
+.chat-input-box {
+  border: 1px solid rgba(255, 255, 255, 0.76); /* 默认边框 */
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 12px 30px rgba(16, 42, 49, 0.08);
   transition: border-color 0.2s ease;
 }
 
-.neu-input-box:focus-within {
-  border-color: #1677FF; /* 聚焦时边框 */
+.chat-input-box:focus-within {
+  border-color: rgba(0, 166, 142, 0.42); /* 聚焦时边框 */
+}
+
+.send-active {
+  background: linear-gradient(135deg, #00a68e, #2e84ff);
+  box-shadow: 0 8px 18px rgba(0, 166, 142, 0.2);
 }
 
 /* 穿透修改 vant 样式 */
@@ -96,12 +103,12 @@ function handleSend(): void {
 }
 
 :deep(.van-field__control) {
-  color: #1D2129;
+  color: #12222e;
   font-size: 16px;
   line-height: 22px;
 }
 
 :deep(.van-field__control::placeholder) {
-  color: #86909C;
+  color: #8a9aa6;
 }
 </style>

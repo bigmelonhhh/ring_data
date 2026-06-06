@@ -5,14 +5,18 @@ import { openConfirmDialog } from '@/components/dialog/dialog'
 const router = useRouter()
 
 /**
- * 返回上一页
+ * 返回上一页。
+ *
+ * @returns {void} 无返回值。
  */
 const onClickLeft = () => {
   router.back()
 }
 
 /**
- * 退出登录
+ * 退出当前登录状态。
+ *
+ * @returns {Promise<void>} 返回退出登录流程的 Promise。
  */
 const handleLogout = async () => {
   const confirmed = await openConfirmDialog('提示', '确定要退出登录吗？')
@@ -26,7 +30,7 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-r from-[#e1f2fc] to-[#daf0fd] flex flex-col">
+  <div class="care-page flex flex-col">
     <!-- 顶部导航栏 -->
     <van-nav-bar
       title="系统设置"
@@ -37,8 +41,14 @@ const handleLogout = async () => {
     />
 
     <!-- 设置菜单列表 -->
-    <div class="mt-4 px-4 flex-1">
-      <van-cell-group inset class="!mx-0 !bg-white/80">
+    <div class="mt-4 flex-1 px-4 pb-6">
+      <div class="care-card mb-4 p-4">
+        <p class="text-[13px] font-semibold text-[#00A68E]">账户与服务</p>
+        <h1 class="mt-1 text-[22px] font-bold text-[#102A31]">管理你的健康数据体验</h1>
+        <p class="mt-2 text-sm text-[#6B7B86]">统一管理账号安全、反馈渠道与平台说明。</p>
+      </div>
+
+      <van-cell-group inset class="care-cell-group !mx-0">
         <van-cell icon="friends" title="账号设置" is-link to="/setting/account" />
         <van-cell icon="share" title="举报与反馈" is-link to="/setting/feedback" />
         <van-cell icon="info" title="关于我们" is-link to="/setting/about" />
@@ -49,8 +59,7 @@ const handleLogout = async () => {
         <van-button 
           block 
           round 
-          type="primary" 
-          color="#FF4D4F"
+          class="care-danger-btn !h-12"
           @click="handleLogout"
         >
           退出登录
@@ -59,17 +68,3 @@ const handleLogout = async () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-/* 使导航栏背景透明，融合进页面渐变背景 */
-:deep(.van-nav-bar) {
-  background-color: transparent;
-}
-:deep(.van-nav-bar__title) {
-  color: #1D2129;
-  font-weight: bold;
-}
-:deep(.van-nav-bar .van-icon) {
-  color: #1D2129;
-}
-</style>

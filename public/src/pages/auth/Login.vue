@@ -52,20 +52,26 @@ async function handleSubmit(): Promise<void> {
 </script>
 
 <template>
-  <div class="login-page min-h-screen bg-gradient-to-r from-[#e1f2fc] to-[#daf0fd] px-4 pb-6 pt-12">
-    <section class="login-panel rounded-3xl px-6 py-8">
-      <div class="flex flex-col items-center gap-4 mb-8">
-        <div class=" p-4 ">
-          <img class="h-10 w-26" :src="logoMark" alt="logo" />
+  <div class="login-page min-h-screen px-5 pb-6 pt-10">
+    <section class="login-hero">
+      <div class="brand-row">
+        <div class="brand-mark">
+          <img class="h-9 object-cover" :src="logoMark" alt="logo" />
         </div>
-        <div class="text-center">
-          <h1 class="text-2xl font-bold text-[#134E4A]">欢迎登录</h1>
+        <div>
+          <h1 class="mt-1 text-[20px] font-bold leading-tight text-[#102A31]">你的健康数据助手</h1>
         </div>
+      </div>
+    </section>
+
+    <section class="login-panel rounded-[28px] px-5 py-6">
+      <div class="mb-6">
+        <p class="text-[18px] font-semibold text-[#00A68E]">欢迎回来</p>
       </div>
 
       <van-form ref="formRef" class="space-y-6" @submit="handleSubmit">
         <div class="space-y-4">
-          <div class="neu-input rounded-2xl overflow-hidden">
+          <div class="neu-input rounded-[20px] overflow-hidden">
             <van-field
               v-model="form.mobile"
               name="mobile"
@@ -78,7 +84,7 @@ async function handleSubmit(): Promise<void> {
             />
           </div>
 
-          <div class="neu-input rounded-2xl overflow-hidden">
+          <div class="neu-input rounded-[20px] overflow-hidden">
             <van-field
               v-model="form.password"
               name="password"
@@ -95,9 +101,9 @@ async function handleSubmit(): Promise<void> {
           </div>
         </div>
 
-        <div class="pt-4 space-y-4">
-          <button type="submit" class="neu-btn w-full h-12 rounded-3xl font-semibold text-lg flex items-center justify-center">
-            登 录
+        <div class="pt-2 space-y-4">
+          <button type="submit" class="neu-btn w-full h-12 rounded-full font-semibold text-[17px] flex items-center justify-center">
+            登录
           </button>
         </div>
       </van-form>
@@ -109,23 +115,51 @@ async function handleSubmit(): Promise<void> {
 .login-page {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  background:
+    radial-gradient(circle at 82% 10%, rgba(255, 204, 153, 0.34), transparent 26%),
+    radial-gradient(circle at 12% 18%, rgba(106, 224, 205, 0.32), transparent 30%),
+    linear-gradient(180deg, #f7fffc 0%, #edf8f4 54%, #f9fbff 100%);
+}
+
+.login-hero {
+  padding-top: 22px;
+}
+
+.brand-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-mark {
+  display: flex;
+  height: 60px;
+  align-items: center;
   justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(0, 105, 92, 0.1);
+  backdrop-filter: blur(14px);
 }
 
 .login-panel {
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-  backdrop-filter: blur(10px);
+  width: 100%;
+  margin-top: clamp(88px, 16vh, 100px);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 22px 56px rgba(16, 42, 49, 0.12);
+  backdrop-filter: blur(18px);
 }
 
 .neu-input {
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: inset 0 0 0 1px rgba(22, 119, 255, 0.08);
+  background: rgba(247, 251, 250, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(0, 166, 142, 0.12);
 }
 
 .neu-btn {
-  background: #1677ff;
-  box-shadow: 0 10px 20px rgba(22, 119, 255, 0.2);
+  background: linear-gradient(135deg, #00a68e 0%, #2e84ff 100%);
+  box-shadow: 0 14px 26px rgba(0, 166, 142, 0.24);
   color: white;
   transition: all 0.2s ease-in-out;
   border: none;
@@ -133,8 +167,17 @@ async function handleSubmit(): Promise<void> {
 }
 
 .neu-btn:active {
-  background: #0f5fd6;
-  box-shadow: inset 0 4px 10px rgba(15, 95, 214, 0.24);
+  transform: translateY(1px);
+  box-shadow: inset 0 4px 10px rgba(9, 46, 55, 0.22);
+}
+
+.safe-dot {
+  display: inline-flex;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #00a68e;
+  box-shadow: 0 0 0 4px rgba(0, 166, 142, 0.12);
 }
 
 /* 穿透修改 vant 样式 */
@@ -146,17 +189,17 @@ async function handleSubmit(): Promise<void> {
   display: none;
 }
 :deep(.van-field__control) {
-  color: #1d2129;
+  color: #12222e;
   font-weight: 500;
 }
 :deep(.van-field__control::placeholder) {
-  color: #86909c;
+  color: #8a9aa6;
 }
 :deep(.van-field__label) {
-  color: #1d2129;
+  color: #12222e;
   font-weight: 600;
 }
 :deep(.van-field__right-icon) {
-  color: #1677ff;
+  color: #00a68e;
 }
 </style>

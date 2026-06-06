@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen overflow-hidden bg-[#E6F7FF]">
+  <div class="h-screen overflow-hidden app-layout-bg">
     <main class="h-full">
       <router-view v-slot="{ Component }">
         <transition name="page-slide" mode="out-in">
@@ -11,6 +11,12 @@
 </template>
 
 <style scoped>
+.app-layout-bg {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(104, 225, 205, 0.26), transparent 28%),
+    linear-gradient(180deg, #f6fffc 0%, #eef8f5 56%, #f7fbff 100%);
+}
+
 .page-slide-enter-active,
 .page-slide-leave-active {
   transition:
